@@ -1,8 +1,9 @@
 import App from "./App";
-import { RESULTLIST } from "./PartOfDay/resultList";
+import { TODAY } from "./PartOfDay/today";
+import { TOMORROW } from "./PartOfDay/tomorrow";
 
 function Funk({ weather }) {
-    RESULTLIST[0].day = "rrr"
+    TODAY[0].day = "rrr"
     console.log(weather);
 }
 

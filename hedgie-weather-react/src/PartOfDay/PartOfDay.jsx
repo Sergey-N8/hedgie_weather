@@ -3,24 +3,25 @@ import './PartOfDay.css';
 function PartOfDay(props) {
   const { day, tempNumber, tempString, cloudsString, cloudsImgNumber, windNumber, windString } = props;
   return (
-    < div className="time morning" >
-      <div className="dis-cont-left">
-        <img className="dis-img"
+    < div className="part-of-day" >
+
+      <div className="part-of-day-container-left">
+        <img className="part-img"
           src={`/icons/${cloudsImgNumber}.webp`}
           alt="logo" />
-        <p className="dis-c">{tempNumber}°C</p>
+        <p className="part-celsius">{tempNumber}°C</p>
       </div>
 
-      <div className="dis-cont-right">
-        <p className="dis-h">{day} {tempString}</p>
-        <div className="dis-p-cont">
-          <div className="dis-p-item">
-            <span className="dis-p-span">•</span>
-            <p className="dis-p">{cloudsString}</p>
+      <div className="part-of-day-container-right">
+        <p className="part-header">{day} {tempString}</p>
+        <div className="part-p-container">
+          <div className="part-p-item">
+            <span className="part-p-span">•</span>
+            <p className="part-p">{cloudsString}</p>
           </div>
-          <div className="dis-p-item">
-            <span className="dis-p-span">•</span>
-            <p className="dis-p">Ветер {windString} {windNumber}</p>
+          <div className="part-p-item">
+            <span className="part-p-span">•</span>
+            <p className="part-p">Ветер {windString} {windNumber}</p>
           </div>
         </div>
       </div>

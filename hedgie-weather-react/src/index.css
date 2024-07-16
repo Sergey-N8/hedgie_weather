@@ -1,12 +1,21 @@
 * {
   margin: 0px;
   padding: 0px;
+  font-style: inherit;
+  font-family: inherit;
+  border: inherit;
+  font-size: inherit;
+  outline: inherit;
+  color: inherit;
+}
+
+body {
+  display: flex;
+  justify-content: center;
 }
 
 :root {
   font-family: "Montserrat Alternates", sans-serif;
-
-  font-style: normal;
   font-weight: 400;
   color: rgb(255, 255, 255);
   background-color: #dd7724;

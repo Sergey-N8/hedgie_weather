@@ -2,9 +2,10 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import PartOfDay from './PartOfDay/PartOfDay.jsx'
-import { RESULTLIST } from './PartOfDay/resultList.js'
+import { TODAY } from './PartOfDay/today.js'
 import './App.css'
 import Funk from './Funk.jsx'
+import { TOMORROW } from './PartOfDay/tomorrow.js'
 
 function App() {
   const api = {
@@ -39,26 +40,30 @@ function App() {
 
   return (
     <>
-      <div >
-        <header className="app-header">
-          <h1>Hedgie Weather</h1>
-        </header>
-        <div className="app-input-container">
-          <input
-            className="app-input"
-            type="text"
-            placeholder="Введите свой город"
-            onChange={(e) => setSearch(e.target.value)}
-          />
-          <button className="app-button-city" onClick={searchPressed}>GO</button>
-        </div>
+      <header className="header">
+        <h1>Hedgie Weather</h1>
+      </header>
+      <div className="input-container">
+        <input
+          className="input-city"
+          type="text"
+          placeholder="Введите свой город"
+          onChange={(e) => setSearch(e.target.value)}
+        />
+        <button className="button-city" onClick={searchPressed}>GO</button>
+      </div>
+      <>
+        <Funk weather={weather} />
+      </>
+      {typeof weather.location !== "undefined" && typeof history.location !== "undefined" ? (
         <>
-          <Funk weather={weather} />
-        </>
-        {typeof weather.location !== "undefined" && typeof history.location !== "undefined" ? (
-          <>
+          <div className="change-day-container">
+            <button className="change-day-button today-button" >Сегодня</button>
+            <button className="change-day-button tomorrow-button" >Завтра</button>
+          </div>
+          <div className="today">
             {
-              RESULTLIST.map((partofday) => (
+              TODAY.map((partofday) => (
                 <PartOfDay
                   key={partofday.id}
                   day={partofday.day}
@@ -71,19 +76,30 @@ function App() {
                 />
               ))
             }
-          </>
+          </div>
+          <div className="tomorrow">
+            {
+              TOMORROW.map((partofday) => (
+                <PartOfDay
+                  key={partofday.id}
+                  day={partofday.day}
+                  tempNumber={partofday.tempNumber}
+                  tempString={partofday.tempString}
+                  cloudsString={partofday.cloudsString}
+                  cloudsImgNumber={partofday.cloudsImgNumber}
+                  windNumber={partofday.windNumber}
+                  windString={partofday.windString}
+                />
+              ))
+            }
+          </div>
+        </>
 
-        ) : (
-          ""
-        )}
-
-      </div >
+      ) : (
+        ""
+      )}
     </>
   );
 }
 
 export default App
-
-export const rrr = () => {
-  return weather
-}
