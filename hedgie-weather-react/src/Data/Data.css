@@ -1,0 +1,22 @@
+.button-city {
+    min-width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: #03b800;
+    color: #ffffff;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+@media (max-width: 768px) {
+
+}
+
+@media (max-width: 480px) {
+    .button-city {
+        min-width: 12vw;
+        height: 12vw;
+        border-radius: 12vw;
+        font-size: 4vw;
+    }
+}

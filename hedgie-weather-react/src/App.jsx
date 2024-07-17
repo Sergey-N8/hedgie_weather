@@ -1,61 +1,68 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import PartOfDay from './PartOfDay/PartOfDay.jsx'
 import { TODAY } from './PartOfDay/today.js'
 import './App.css'
-import Funk from './Funk.jsx'
 import { TOMORROW } from './PartOfDay/tomorrow.js'
+import InputCity from './InputCity/InputCity.jsx'
+import { Data } from './Data/Data.jsx'
+import WeatherFunctionDay from './WeatherFunction/WeatherFunctionDay.jsx'
 
 function App() {
-  const api = {
-    key: "e13fe10f11954b6aa3260206242606",
-    base: "https://api.weatherapi.com/v1/",
-  };
 
   const [search, setSearch] = useState("");
   const [weather, setWeather] = useState({});
   const [history, setWeatherHistory] = useState({});
 
-  const getYesterdayDate = () => {
-    let yesterday = new Date();
-    yesterday.setDate(yesterday.getDate() - 1);
-    const result = yesterday.getFullYear() + "-" + String(yesterday.getMonth() + 1).padStart(2, '0') + "-" + String(yesterday.getDate()).padStart(2, '0');
-    return result
-  }
 
-  const searchPressed = () => {
-    Promise.all([
-      fetch(`${api.base}/forecast.json?key=${api.key}&q=${search}&days=2&aqi=no&alerts=no}`),
-      fetch(`${api.base}/history.json?key=${api.key}&q=${search}&dt=${getYesterdayDate()}`)
-    ])
-      .then(([res1, res2]) => {
-        return Promise.all([res1.json(), res2.json()])
-      })
-      .then(([dataWeather, dataHistory]) => {
-        setWeather(dataWeather);
-        setWeatherHistory(dataHistory);
-      });
-  };
+  const hendlenCityInput = (search) => {
+    setSearch(search)
+  }
+  
+
+
+
+  // const hendlenClickButtonCity = (click) => {
+  //   setClick(click)
+  // }
+
+  // console.log(click);
+
+  // click={click}
+
+  // onClick={hendlenClickButtonCity}
+
+  
+  // useEffect(() => {
+  //   const connection = createConnection(serverUrl, roomId);
+  //   connection.connect();
+  //   return () => {
+  //     connection.disconnect();
+  //   };
+  // }, [serverUrl, roomId]);
+
 
   return (
     <>
       <header className="header">
         <h1>Hedgie Weather</h1>
       </header>
+
       <div className="input-container">
-        <input
-          className="input-city"
-          type="text"
-          placeholder="Введите свой город"
-          onChange={(e) => setSearch(e.target.value)}
-        />
-        <button className="button-city" onClick={searchPressed}>GO</button>
+        <InputCity onChange={hendlenCityInput} />
+        <Data search={search} callbackWeather={setWeather} callbackHistoryWeather={setWeatherHistory}/>
       </div>
+      
+
       <>
-        <Funk weather={weather} />
+        <PartOfDay />
       </>
-      {typeof weather.location !== "undefined" && typeof history.location !== "undefined" ? (
+
+      <>
+        <WeatherFunctionDay weather={weather} history={history}/>
+      </>
+      {/* {typeof weather.location !== "undefined" && typeof history.location !== "undefined" ? (
         <>
           <div className="change-day-container">
             <button className="change-day-button today-button" >Сегодня</button>
@@ -97,7 +104,7 @@ function App() {
 
       ) : (
         ""
-      )}
+      )} */}
     </>
   );
 }

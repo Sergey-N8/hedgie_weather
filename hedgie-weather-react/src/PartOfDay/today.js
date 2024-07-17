@@ -3,7 +3,7 @@ export const TODAY = [
         id: 1,
         day: "Утром",
         tempNumber: 10,
-        tempString: "прохладно",
+        tempString: "tttt",
         cloudsString: "облочно",
         cloudsImgNumber: 113,
         windNumber: 7,
