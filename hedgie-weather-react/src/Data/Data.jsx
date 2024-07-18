@@ -1,8 +1,7 @@
 import { useState } from 'react'
 
-
 export function Data({ search, callbackWeather, callbackHistoryWeather }) {
-    
+
     // const conditionRus = () => JSON.parse(JSON.stringify(jsonData));
 
     const api = {
@@ -15,8 +14,6 @@ export function Data({ search, callbackWeather, callbackHistoryWeather }) {
 
     const [weather, setWeather] = useState({});
     const [history, setWeatherHistory] = useState({});
-    const [condition, setCondition] = useState([]);
-    // const [click, setClick] = useState();
 
     const getYesterdayDate = () => {
         let yesterday = new Date();
@@ -24,8 +21,6 @@ export function Data({ search, callbackWeather, callbackHistoryWeather }) {
         const result = yesterday.getFullYear() + "-" + String(yesterday.getMonth() + 1).padStart(2, '0') + "-" + String(yesterday.getDate()).padStart(2, '0');
         return result
     }
-
-    // const ttt = 111;
 
     const searchPressed = () => {
         Promise.all([
@@ -42,13 +37,17 @@ export function Data({ search, callbackWeather, callbackHistoryWeather }) {
 
     };
 
-    
-
-    const onClickPush = () => {
-        searchPressed();
+    const onClickPush = async() => {
+        awaitsearchPressed();
         callbackWeather(weather);
         callbackHistoryWeather(history);
+
     }
+
+    // useEffect(() => {
+    //     callbackWeather(weather);
+    //     callbackHistoryWeather(history);
+    // }, [onClickPush()]);
 
     return (
         <>
