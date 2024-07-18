@@ -44,11 +44,6 @@ export function Data({ search, callbackWeather, callbackHistoryWeather }) {
 
     }
 
-    // useEffect(() => {
-    //     callbackWeather(weather);
-    //     callbackHistoryWeather(history);
-    // }, [onClickPush()]);
-
     return (
         <>
             <button className="button-city" onClick={onClickPush}>GO</button >

@@ -55,7 +55,7 @@ function PartOfDay() {
               </div>
               <div className="part-p-item">
                 <span className="part-p-span">•</span>
-                <p className="part-p">Ветер {tab.windString} {tab.windNumber}</p>
+                <p className="part-p">Ветер {tab.windString} {tab.windNumber} км/ч</p>
               </div>
             </div>
           </div>
