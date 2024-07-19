@@ -1,6 +1,6 @@
 import './InputCity.css';
 
-function InputCity({ onChange } ) {
+function InputCity({ onChange }) {
 
   const hendlenCityInput = (e) => {
     onChange(e.target.value)

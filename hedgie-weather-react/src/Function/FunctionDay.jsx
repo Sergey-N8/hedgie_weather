@@ -38,8 +38,6 @@ export const FunctionDay = ({ weather, history }) => {
         return arrTempStr;
     };
 
-
-
     const conditionCode = (day) => {
         const conditionNumMor = Math.max(
             weather.forecast.forecastday[day].hour[6].condition.code,
@@ -78,9 +76,6 @@ export const FunctionDay = ({ weather, history }) => {
         return conditionArrRes;
     };
 
-
-
-
     const windPowerList = (day) => {
         const windPowerListStart = []
         for (let i = 0; i < weather.forecast.forecastday[day].hour.length; i++) {
@@ -88,8 +83,6 @@ export const FunctionDay = ({ weather, history }) => {
         }
         return windPowerListStart
     }
-
-    // console.log(windPowerList(1)); 
 
     const windPowerListNamber = [
         Math.max(...windPowerList(0).slice(6, 9)),
@@ -99,8 +92,6 @@ export const FunctionDay = ({ weather, history }) => {
         Math.max(...windPowerList(1).slice(10, 19)),
         Math.max(...windPowerList(1).slice(20, 23)),
     ]
-
-    console.log(windPowerListNamber); 
 
     const windPowerFeelsLike = (wind) => {
         let feelsLikeStr = " ";

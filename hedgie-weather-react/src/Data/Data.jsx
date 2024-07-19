@@ -37,7 +37,7 @@ export function Data({ search, callbackWeather, callbackHistoryWeather }) {
 
     };
 
-    const onClickPush = async() => {
+    const onClickPush = () => {
         awaitsearchPressed();
         callbackWeather(weather);
         callbackHistoryWeather(history);
@@ -46,7 +46,7 @@ export function Data({ search, callbackWeather, callbackHistoryWeather }) {
 
     return (
         <>
-            <button className="button-city" onClick={onClickPush}>GO</button >
+            <button className="button-city" onClick={onClickPush.then}>GO</button >
         </>
     )
 }

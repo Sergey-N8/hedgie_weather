@@ -1,20 +1,35 @@
 import { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import PartOfDay from './PartOfDay/PartOfDay.jsx'
 import { TODAY } from './PartOfDay/today.js'
-import './App.css'
 import { TOMORROW } from './PartOfDay/tomorrow.js'
+import './App.css'
 import InputCity from './InputCity/InputCity.jsx'
-// import Data from './Data/Data.jsx'
 import { FunctionDay } from './Function/FunctionDay.jsx'
-// import WeatherFunctionDay from './WeatherFunction/WeatherFunctionDay.jsx'
+import Data from './Data/Data.jsx'
+import TabDayPonel from './TabDayPonel/TabDayPonel.jsx'
+import Header from './Header/Header.jsx'
+
 
 function App() {
 
   const [search, setSearch] = useState("");
   const [weather, setWeather] = useState({});
   const [history, setWeatherHistory] = useState({});
+  const [tabDay, setTabDay] = useState(TODAY); 
+  const [btnColor1, setBtnColor1] = useState("#03b800"); 
+  const [btnColor2, setBtnColor2] = useState("#6d6d6d");
+
+  const choseTabDay = (nam) => {
+    if (nam === 1) {
+      setTabDay(TODAY)
+      setBtnColor1("#03b800");
+      setBtnColor2("#6d6d6d");
+    } else if (nam === 2) {
+      setTabDay(TOMORROW)
+      setBtnColor1("#6d6d6d");
+      setBtnColor2("#03b800");
+    }
+  }
 
   const hendlenCityInput = (search) => {
     setSearch(search)
@@ -34,7 +49,6 @@ function App() {
     const result = yesterday.getFullYear() + "-" + String(yesterday.getMonth() + 1).padStart(2, '0') + "-" + String(yesterday.getDate()).padStart(2, '0');
     return result
   }
-
   const searchPressed = () => {
     Promise.all([
       fetch(`${api.baseWeatherApi}/forecast.json?key=${api.keyWeatherApi}&q=${search}&days=2&aqi=no&alerts=no}`),
@@ -50,24 +64,35 @@ function App() {
 
   };
 
-
   return (
     <>
-      <header className="header">
-        <h1>Hedgie Weather</h1>
-      </header>
+      <Header/>
 
       <div className="input-container">
-        <InputCity onChange={hendlenCityInput} />
+        <InputCity
+          onChange={hendlenCityInput}
+        />
         <button className="button-city" onClick={searchPressed}>GO</button >
       </div>
 
       {typeof weather.location !== "undefined" ? (
 
         <>
-          <FunctionDay weather={weather} history={history} />
+          <FunctionDay
+            weather={weather}
+            history={history}
+          />
 
-          <PartOfDay />
+          <TabDayPonel
+            onToday={() => choseTabDay(1)}
+            onTomorrow={() => choseTabDay(2)}
+            color1={btnColor1}
+            color2={btnColor2}
+          />
+
+          <PartOfDay
+            param={tabDay}
+          />
         </>
 
       ) : (

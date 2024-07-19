@@ -1,28 +1,8 @@
-/* .container {
-    display: flex;
-    gap: 4%;
-} */
-
-.change-day-container {
-    display: flex;
-    gap: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
-  
-  .change-day-button {
+.change-day-button {
     border-radius: 20px;
     height: 40px;
     width: 50%;
-  }
-  
-  /* .today-button {
-
-  }
-  
-  .tomorrow-button {
-
-  } */
+}
 
 .part-of-day {
     display: flex;
@@ -129,6 +109,4 @@
     }
 }
 
-@media (max-width: 480px) {
-   
-}
+@media (max-width: 480px) {}
