@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { TODAY } from "./function/today";
-import { TOMORROW } from "./function/tomorrow";
+import { TODAY } from "./part-of-day/function/today";
+import { TOMORROW } from "./part-of-day/function/tomorrow";
 
 export function useTabDayPonel() {
   const [tabDay, setTabDay] = useState(TODAY);

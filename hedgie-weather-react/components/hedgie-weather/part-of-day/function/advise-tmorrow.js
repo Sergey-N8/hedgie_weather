@@ -1,0 +1,32 @@
+export const ADVISETOMORROW = [
+  {
+    id: 10,
+    day: "Утром",
+    tempNumber: 10,
+    tempString: "tttt",
+    cloudsString: "облочно",
+    cloudsImgNumber: 113,
+    windNumber: 7,
+    windString: "умеренный",
+  },
+  {
+    id: 11,
+    day: "Днем",
+    tempNumber: 10,
+    tempString: "прохладно",
+    cloudsString: "облочно",
+    cloudsImgNumber: 113,
+    windNumber: 7,
+    windString: "умеренный",
+  },
+  {
+    id: 12,
+    day: "Вечером",
+    tempNumber: 10,
+    tempString: "прохладно",
+    cloudsString: "облочно",
+    cloudsImgNumber: 113,
+    windNumber: 7,
+    windString: "умеренный",
+  },
+];

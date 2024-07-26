@@ -1,12 +1,13 @@
 import "../components/hedgie-weather/hedgie-weather.module.css";
 import { useState } from "react";
-import { PartOfDay } from "../components/hedgie-weather/part-of-day.jsx";
+import { PartOfDay } from "../components/hedgie-weather/part-of-day/part-of-day.jsx";
 import { InputCity } from "../components/hedgie-weather/input-city.jsx";
-import { FunctionDay } from "../components/hedgie-weather/function/function-part-of-day.jsx";
+import { FunctionDay } from "../components/hedgie-weather/part-of-day/function/function-part-of-day.jsx";
 import { TabDayPonel } from "../components/hedgie-weather/tab-day-ponel.jsx";
 import { Header } from "../components/hedgie-weather/header.jsx";
 import { useTabDayPonel } from "../components/hedgie-weather/use-tab-day-ponel.jsx";
 import clsx from "clsx";
+// import { Www } from "../components/hedgie-weather/part-of-day/function/www.jsx";
 
 export default function HomePage() {
   const { tabDay, btnColor1, btnColor2, choseTabDay } = useTabDayPonel();
@@ -41,10 +42,12 @@ export default function HomePage() {
   const searchPressed = () => {
     Promise.all([
       fetch(
-        `${api.baseWeatherApi}/forecast.json?key=${api.keyWeatherApi}&q=${search}&days=2&aqi=no&alerts=no}`,
+        `${api.baseWeatherApi}/forecast.json?key=${api.keyWeatherApi}&q=${search}&days=2&aqi=no&alerts=no}`
       ),
       fetch(
-        `${api.baseWeatherApi}/history.json?key=${api.keyWeatherApi}&q=${search}&dt=${getYesterdayDate()}`,
+        `${api.baseWeatherApi}/history.json?key=${
+          api.keyWeatherApi
+        }&q=${search}&dt=${getYesterdayDate()}`
       ),
     ])
       .then(([res1, res2]) => {
@@ -61,7 +64,7 @@ export default function HomePage() {
       className={clsx(
         "pl-4 pr-4 max-w-3xl",
         "lg:min-w-3xl mx-auto",
-        "sm:pl-2 sm:pr-2",
+        "sm:pl-2 sm:pr-2"
       )}
     >
       <Header />
@@ -69,6 +72,8 @@ export default function HomePage() {
       <InputCity onChange={hendlenCityInput} onClick={searchPressed} />
 
       <useData search={search} />
+
+      {/* <Www/> */}
 
       {typeof weather.location !== "undefined" ? (
         <>
